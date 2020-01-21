@@ -10,10 +10,10 @@ import UIKit
 
 class ViewController: UIViewController {
     @IBOutlet weak var messageLabel: UILabel!
-    let awesomeMessage = "You Are Awesome!"
-    let greateMesage = "You Are Great!"
-    let bombMessage = "You Are Da Bomb!"
-    
+    // let awesomeMessage = "You Are Awesome!"
+   // let greateMesage = "You Are Great!"
+   // let bombMessage = "You Are Da Bomb!"
+    var imageNumber = 0
     
     @IBOutlet weak var imageView: UIImageView!
     override func viewDidLoad() {
@@ -22,17 +22,26 @@ class ViewController: UIViewController {
     }
     
     @IBAction func buttonPressed(_ sender: UIButton) {
-        if messageLabel.text == awesomeMessage {
-            messageLabel.text = greateMesage
-            imageView.image = UIImage(named:"image1")
-        }else if messageLabel.text == greateMesage {
-            messageLabel.text = bombMessage
-            imageView.image = UIImage(named:"image2")
-        } else {
-            messageLabel.text = awesomeMessage
-            imageView.image = UIImage(named:"image0")
-            
+        
+        print (imageNumber)
+        let imageName = "image\(imageNumber)"
+        imageView.image = UIImage(named: imageName)
+        imageNumber += 1
+        if imageNumber == 10 {
+            imageNumber = 0
         }
+        
+       // if messageLabel.text == awesomeMessage {
+         //   messageLabel.text = greateMesage
+           // imageView.image = UIImage(named:"image1")
+        //}else if messageLabel.text == greateMesage {
+          //  messageLabel.text = bombMessage
+            //imageView.image = UIImage(named:"image2")
+        //} else {
+          //  messageLabel.text = awesomeMessage
+            //imageView.image = UIImage(named:"image0")
+            
+        //}
     }
     
     
