@@ -24,7 +24,11 @@ class ViewController: UIViewController {
     
     @IBAction func buttonPressed(_ sender: UIButton) {
         let message = ["You Are Awesome!", "You Are Great!", "You Are Fantastic!", "Fabulous? That's You!"]
-        messageLabel.text = message[Int.random(in: 0...message.count-1)]
+        var newMessage = message[Int.random(in: 0...message.count-1)]
+        while messageLabel.text == newMessage {
+            print("*** we had a reapeating value.Both newMessage and messageLabel.text = \(newMessage) and \(messageLabel.text!)")
+                newMessage = message[Int.random(in: 0...message.count-1)]        }
+        messageLabel.text = newMessage
         imageView.image = UIImage(named:"image\(Int.random(in:0...totalNumberOfImages))")
         //messageLabel.text = message[messageNumber]
         //messageNumber += 1
