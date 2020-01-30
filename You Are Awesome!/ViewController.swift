@@ -24,17 +24,17 @@ class ViewController: UIViewController {
     
     @IBAction func buttonPressed(_ sender: UIButton) {
         let message = ["You Are Awesome!", "You Are Great!", "You Are Fantastic!", "Fabulous? That's You!"]
-        var newMessageNumber = Int.random(in: 0...message.count-1)
-        while messageNumber == newMessageNumber {
+        var newMessageNumber : Int
+        repeat  {
                newMessageNumber = Int.random(in: 0...message.count-1)
-        }
+        } while (messageNumber == newMessageNumber)
         messageNumber = newMessageNumber
         messageLabel.text = message[messageNumber]
         
-       var newImageNumber = (Int.random(in:0...totalNumberOfImages))
-        while imageNumber == newImageNumber {
+        var newImageNumber : Int
+        repeat  {
             newImageNumber = (Int.random(in:0...totalNumberOfImages))
-        }
+        } while (imageNumber == newImageNumber)
         imageNumber = newImageNumber
         imageView.image = UIImage(named: "image\(imageNumber)")
         //messageLabel.text = message[messageNumber]
