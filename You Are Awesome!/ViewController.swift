@@ -14,9 +14,11 @@ class ViewController: UIViewController {
     // let awesomeMessage = "You Are Awesome!"
     // let greateMesage = "You Are Great!"
     // let bombMessage = "You Are Da Bomb!"
-    var imageNumber = 0
-    var messageNumber = 0
+    var imageNumber = -1
+    var messageNumber = -1
+    var soundNumber = -1
     let totalNumberOfImages = 9
+    var totalNumberOfSounds = 5
     var audioPlayer = AVAudioPlayer()
     
     @IBOutlet weak var imageView: UIImageView!
@@ -24,6 +26,18 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
     }
+    func playSound (name: String) {
+        if let sound = NSDataAsset(name: name){
+            do {
+                try audioPlayer = AVAudioPlayer(data: sound.data)
+                audioPlayer.play()
+            } catch {
+                print("Error :\(error.localizedDescription) Could not ionitialize AVAudioplayer object") }
+        } else  {
+                print ("Error: could not read data from the file")
+            }
+    }
+    
     
     @IBAction func buttonPressed(_ sender: UIButton) {
         let message = ["You Are Awesome!", "You Are Great!", "You Are Fantastic!", "Fabulous? That's You!"]
@@ -40,16 +54,13 @@ class ViewController: UIViewController {
         } while (imageNumber == newImageNumber)
         imageNumber = newImageNumber
         imageView.image = UIImage(named: "image\(imageNumber)")
-        
-        if let sound = NSDataAsset(name: "sound0"){
-            do {
-                try audioPlayer = AVAudioPlayer(data: sound.data)
-                audioPlayer.play()
-            } catch {
-                print("Error :\(error.localizedDescription) Could not ionitialize AVAudioplayer object") }
-        } else  {
-                print ("Error: could not read data from the file")
-            }
+        var newSoundNumber: Int
+        repeat {
+            newSoundNumber = (Int.random(in:0...totalNumberOfSounds-1))
+        } while soundNumber == newSoundNumber
+        soundNumber = newSoundNumber
+        print("*** The New Sound Number is \(soundNumber)")
+        playSound(name:"sound\(soundNumber)")
         }
         
         //messageLabel.text = message[messageNumber]
