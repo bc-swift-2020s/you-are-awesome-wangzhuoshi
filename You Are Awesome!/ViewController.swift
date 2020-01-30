@@ -37,31 +37,27 @@ class ViewController: UIViewController {
                 print ("Error: could not read data from the file")
             }
     }
+    func nonRepeatingRandom (originalNumber : Int, upperLimit : Int) -> Int
+      {
+        var newNumber : Int
+        repeat {
+            newNumber = Int.random(in: 0...upperLimit)
+        } while originalNumber  == newNumber
+        return newNumber
+    }
     
     
     @IBAction func buttonPressed(_ sender: UIButton) {
         let message = ["You Are Awesome!", "You Are Great!", "You Are Fantastic!", "Fabulous? That's You!"]
-        var newMessageNumber : Int
-        repeat  {
-            newMessageNumber = Int.random(in: 0...message.count-1)
-        } while (messageNumber == newMessageNumber)
-        messageNumber = newMessageNumber
+        messageNumber = nonRepeatingRandom(originalNumber: messageNumber, upperLimit: message.count-1)
         messageLabel.text = message[messageNumber]
         
-        var newImageNumber : Int
-        repeat  {
-            newImageNumber = (Int.random(in:0...totalNumberOfImages))
-        } while (imageNumber == newImageNumber)
-        imageNumber = newImageNumber
+        imageNumber = nonRepeatingRandom(originalNumber: imageNumber, upperLimit: totalNumberOfImages-1)
         imageView.image = UIImage(named: "image\(imageNumber)")
-        var newSoundNumber: Int
-        repeat {
-            newSoundNumber = (Int.random(in:0...totalNumberOfSounds-1))
-        } while soundNumber == newSoundNumber
-        soundNumber = newSoundNumber
-        print("*** The New Sound Number is \(soundNumber)")
-        playSound(name:"sound\(soundNumber)")
-        }
+        
+        soundNumber = nonRepeatingRandom(originalNumber: soundNumber, upperLimit: totalNumberOfSounds-1)
+        
+        playSound(name: "sound\(soundNumber)")
         
         //messageLabel.text = message[messageNumber]
         //messageNumber += 1
@@ -94,3 +90,4 @@ class ViewController: UIViewController {
     
 
 
+}
